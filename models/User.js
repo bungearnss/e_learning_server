@@ -9,7 +9,7 @@ let User={
 
         return db.query("SELECT tbl_users.id,tbl_profiles_title.prof_title,tbl_profiles.position,tbl_profiles.company,tbl_profiles.address,tbl_profiles.zipcode,"+
         " tbl_users.username,tbl_users.email,tbl_profiles.title_id,tbl_profiles.firstname,tbl_profiles.phone,"+
-        userBaseUrl + " concat(tbl_users.id,'/original/',tbl_users.pic_user) as pic_user,"+
+        userBaseUrl + "tbl_users.id/original/,tbl_users.pic_user as pic_user,"+
         
         " tbl_profiles.lastname,tbl_profiles.identification,tbl_profiles.department,tbl_users.division_id,tbl_users.repass_status"+
         " FROM tbl_users INNER JOIN tbl_profiles ON tbl_profiles.user_id = tbl_users.id"+
@@ -19,7 +19,7 @@ let User={
         getUserById:function(id,callback){ 
             return db.query("SELECT tbl_profiles.province,tbl_profiles.sex,tbl_profiles_title.prof_title,tbl_users.username,tbl_users.email,tbl_profiles.title_id,tbl_profiles.position,tbl_profiles.company,tbl_profiles.address,"+
             "tbl_profiles.zipcode,tbl_profiles.firstname,tbl_profiles.phone,tbl_profiles.type_user,tbl_type_user.name,tbl_profiles.lastname, tbl_users.company_id,"+
-            userBaseUrl + "concat(tbl_users.id,'/original/',tbl_users.pic_user) as pic_user"+
+            userBaseUrl + "tbl_users.id,'/original/',tbl_users.pic_user as pic_user"+
             ",tbl_division.id,tbl_division.dep_title"+
             ",tbl_profiles.identification,tbl_profiles.department,tbl_users.division_id,tbl_users.repass_status FROM tbl_users "+
             /* "INNER JOIN tbl_company ON tbl_users.company_id = tbl_company.company_id where active = 'y'" +  */
@@ -85,7 +85,7 @@ let User={
         findByEmail:function(email,callback){
             return db.query("SELECT tbl_users.id,tbl_users.activkey,tbl_profiles_title.prof_title,"+
             " tbl_users.username,tbl_users.email,tbl_profiles.title_id,tbl_profiles.firstname,tbl_profiles.phone,"+
-            userBaseUrl + " concat(tbl_users.id,'/original/',tbl_users.pic_user) as pic_user,"+
+            userBaseUrl + "tbl_users.id,'/original/',tbl_users.pic_user as pic_user,"+
             " tbl_profiles.lastname,tbl_profiles.identification,tbl_profiles.department,tbl_users.division_id,tbl_users.repass_status"+
             " FROM tbl_users INNER JOIN tbl_profiles ON tbl_profiles.user_id = tbl_users.id"+
             " INNER JOIN tbl_profiles_title ON tbl_profiles.title_id = tbl_profiles_title.prof_id  where tbl_users.del_status != 1 and tbl_users.email = ?",[email],callback);
