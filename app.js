@@ -9,7 +9,10 @@ var app = express();
 /* require routes */
 var About = require('./routers/About');
 var User = require('./routers/User');
-var Login = require('./routers/Login')
+var Login = require('./routers/Login');
+var Category = require('./routers/Category');
+var Condition = require('./routers/Condition');
+var Feature = require('./routers/Feature');
 
 //open port 13000
 var server = app.listen(13000, function () {
@@ -28,6 +31,9 @@ app.use(cookieParser());
 app.use('/About', About);
 app.use('/User', User);
 app.use('/Login',Login);
+app.use('/Category', Category);;
+app.use('/Condition', Condition);
+app.use('/Feature', Feature);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
