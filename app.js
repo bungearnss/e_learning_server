@@ -13,6 +13,9 @@ var Login = require('./routers/Login');
 var Category = require('./routers/Category');
 var Condition = require('./routers/Condition');
 var Feature = require('./routers/Feature');
+var Course = require('./routers/Course');
+var Generation = require('./routers/Generation');
+var News = require('./routers/News');
 
 //open port 13000
 var server = app.listen(13000, function () {
@@ -34,6 +37,9 @@ app.use('/Login',Login);
 app.use('/Category', Category);;
 app.use('/Condition', Condition);
 app.use('/Feature', Feature);
+app.use('/Course', Course);
+app.use('/Generation', Generation);
+app.use('/News', News);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
